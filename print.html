@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimu Online Cyber Service</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        header {
+            background-color: white;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            background-color: wheat;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            font-size: 2rem;
+            text-decoration: underline;
+        }
+        nav a:hover {
+            color: white;
+            text-shadow: 2px 2px 0 red, -2px 2px 0 red, 2px -2px 0 red, -2px -2px 0 red;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: floralwhite;
+        }
+        .form-container {
+            border: 10px solid wheat;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: white;
+            max-width: 400px;
+            width: 100%;
+        }
+        label, p {
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .preview-container {
+            display: none;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: white;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nimu Online Cyber Service</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Service</a>
+            <a href="links.html">Other Links</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <main>
+        <h3><u>Printout 👉</u></h3>
+        <div class="form-container">
+            <h2>Upload Your Document</h2>
+            <p>Customers are required to upload their document, choose print options, and submit.</p>
+            
+            <form id="print-form" action="#" method="post" enctype="multipart/form-data">
+    <!-- Upload document -->
+    <label for="upload">Upload Document (PDF or JPEG):</label>
+    <input type="file" id="upload" name="document" accept=".pdf,.jpeg,.jpg" required>
+
+    <!-- Choose color option -->
+    <label for="color-choice">Choose Print Option:</label>
+    <select id="color-choice" name="color_choice" required>
+        <option value="color">Color</option>
+        <option value="bw">Black & White</option>
+    </select>
+
+    <!-- Preview Section -->
+    <div id="preview-section" style="margin-top: 20px; display: none;">
+        <h3>Preview:</h3>
+        <p><strong>Uploaded File:</strong> <span id="file-name"></span></p>
+        <p><strong>Print Option:</strong> <span id="print-option"></span></p>
+    </div>
+
+    <!-- Submit button -->
+    <button type="button" onclick="previewInput()">Preview</button>
+    <button type="submit" style="display: none;" id="submit-button" onclick="showAlert(event)">Submit</button>
+</form>
+    </main>
+    <footer>
+        <p>&copy; 2025 Nimu Online Cyber Service. All rights reserved.</p>
+    </footer>
+
+    <script>
+    function previewInput() {
+        const fileInput = document.getElementById("upload");
+        const colorChoice = document.getElementById("color-choice").value;
+
+        // Check if a file is selected
+        if (!fileInput.files.length) {
+            alert("Please upload a document.");
+            return;
+        }
+
+        // Get file name and print option
+        const fileName = fileInput.files[0].name;
+
+        // Update the preview section
+        document.getElementById("file-name").innerText = fileName;
+        document.getElementById("print-option").innerText = colorChoice === "color" ? "Color" : "Black & White";
+
+        // Show the preview section and enable the submit button
+        document.getElementById("preview-section").style.display = "block";
+        document.getElementById("submit-button").style.display = "inline-block";
+    }
+
+    function showAlert(event) {
+        event.preventDefault(); // Prevent form submission
+        alert("Your document has been successfully submitted!");
+    }
+</script>
+</body>
+</html>

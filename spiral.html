@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimu Online Cyber Service</title>
+    <link rel="stylesheet" href="styles.css">
+    <style type="text/css">
+        header {
+            background-color: white;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            background-color: wheat;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            font-size: 2rem;
+            text-decoration: underline;
+        }
+        nav a:hover {
+            color: white;
+            font-size: 2rem;
+            text-shadow:
+                2px 2px 0 red, 
+                -2px 2px 0 red, 
+                2px -2px 0 red, 
+                -2px -2px 0 red;
+            text-align: center;
+            text-decoration: underline;
+        }
+        #nav-two {
+            background-color: transparent;
+        }
+        main {
+            background-color: floralwhite;
+            background-size: cover;
+            background-position: center;
+            padding: 0.5rem;
+            text-align: center;
+            background-repeat: no-repeat;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: skyblue;
+            color: white;
+            position: bottom;
+            bottom: 0;
+            width: 100%;
+        }
+        h1 {
+            text-align: left;
+            margin: 0;
+            flex: 1;
+            color: black;
+        }
+        h3 {
+            color: black;
+            text-align: center;
+            font-size: 2rem;
+        }
+        .a {
+            color: black;
+            background-color: white;
+        }
+        .b {
+            color: white;
+        }
+        .c {
+            color: black;
+            font-size: 1.5rem;
+            text-align: justify-all;
+            font-family: Courier New;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+        .form-container {
+            margin: 20px;
+            padding: 20px;
+            border: 10px solid wheat;
+            border-radius: 5px;
+            max-width: 400px;
+            background-color: white;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bolder;
+        }
+        input[type="file"],
+        select,
+        button {
+            display: block;
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function showAlert(event) {
+            event.preventDefault(); // Prevent actual form submission
+            alert("Submitted Successfully");
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Nimu Online Cyber Service</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Service</a>
+            <a href="links.html">Other Links</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <main>
+        <h3><u>Spiral Binding 👉</u></h3>
+        <div class="form-container">
+            <h2>Upload Your Document</h2>
+            <p>Customers are required to upload their document, choose print options, and submit.</p>
+            
+            <form id="print-form" action="#" method="post" enctype="multipart/form-data">
+    <!-- Upload document -->
+    <label for="upload">Upload Document (PDF or JPEG):</label>
+    <input type="file" id="upload" name="document" accept=".pdf,.jpeg,.jpg" required>
+
+    <!-- Choose color option -->
+    <label for="color-choice">Choose Print Option:</label>
+    <select id="color-choice" name="color_choice" required>
+        <option value="color">Color</option>
+        <option value="bw">Black & White</option>
+    </select>
+
+    <!-- Preview Section -->
+    <div id="preview-section" style="margin-top: 20px; display: none;">
+        <h3>Preview:</h3>
+        <p><strong>Uploaded File:</strong> <span id="file-name"></span></p>
+        <p><strong>Print Option:</strong> <span id="print-option"></span></p>
+    </div>
+
+    <!-- Submit button -->
+    <button type="button" onclick="previewInput()">Preview</button>
+    <button type="submit" style="display: none;" id="submit-button" onclick="showAlert(event)">Submit</button>
+</form>
+    </main>
+    <footer>
+        <p>&copy; 2025 Nimu Online Cyber Service. All rights reserved.</p>
+    </footer>
+
+    <script>
+    function previewInput() {
+        const fileInput = document.getElementById("upload");
+        const colorChoice = document.getElementById("color-choice").value;
+
+        // Check if a file is selected
+        if (!fileInput.files.length) {
+            alert("Please upload a document.");
+            return;
+        }
+
+        // Get file name and print option
+        const fileName = fileInput.files[0].name;
+
+        // Update the preview section
+        document.getElementById("file-name").innerText = fileName;
+        document.getElementById("print-option").innerText = colorChoice === "color" ? "Color" : "Black & White";
+
+        // Show the preview section and enable the submit button
+        document.getElementById("preview-section").style.display = "block";
+        document.getElementById("submit-button").style.display = "inline-block";
+    }
+
+    function showAlert(event) {
+        event.preventDefault(); // Prevent form submission
+        alert("Your document has been successfully submitted!");
+    }
+</script>
+</body>
+</html>

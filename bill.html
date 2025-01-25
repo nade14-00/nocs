@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimu Online Cyber Service</title>
+    <style>
+        header{
+            background-color: white;
+            background-size: cover;
+            background-position: center;
+             background-repeat: no-repeat;
+            text-align: center;
+        }
+        nav{
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            background-color: wheat;
+            padding: 0.5rem 0;
+        }
+        nav a{
+            color: black;
+            text-decoration: none;
+            font-size: 2rem;
+            text-decoration: underline;
+        }
+        nav a:hover {
+            color: white;
+            font-size: 2rem;
+            text-shadow:
+            2px 2px 0 red, 
+       -2px 2px 0 red, 
+        2px -2px 0 red, 
+       -2px -2px 0 red;
+       text-align: center;
+            text-decoration: underline;
+        }
+        main{
+            background-color: whitesmoke;
+            background-size: cover;
+            background-position: center;
+            padding: 2rem;
+            text-align: center;
+            background-repeat: no-repeat;
+            font-family: Courier New;
+        }
+        footer{
+            text-align: center;
+            padding: 1rem 0;
+            background-color: skyblue;
+            color: white;
+            position: bottom;
+            bottom: 0;
+            width: 100%;
+        }
+        h1{
+            font-size: 2rem;
+            text-align: center;
+            margin: 0;
+            flex: 1;
+            color: black;
+            font-family: Elephant;
+        }
+        h2{
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 0;
+            flex: 1;
+            color: brown;
+            font-family: Courier New;
+        }
+        div{
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        .a{
+            color: black;
+            background-color: white;
+            width: 10%;
+            margin: 0 auto;
+            padding: 1px;
+            text-align: center;
+            font-family: Times New Roman;
+        }
+        .b{
+            color: white;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+      <header>
+        <h1>Nimu Online Cyber Service</h1>
+        <nav>
+                <a href="index.html">Home</a>
+                <a href="services.html">Service</a>
+                <a href="links.html">Other Links</a>
+                <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+    <body>
+  <!-- Existing HTML Structure -->
+  <h2><u>👇 Bill & Recharge 👇</u></h2><br><br>
+  <div class="form-section">
+    <label for="service">Choose a Service:</label>
+    <select id="service" onchange="handleServiceChange()">
+      <option value="">-- Select Service --</option>
+      <option value="bill-payment">Bill Payment</option>
+      <option value="recharge">Recharge</option>
+    </select>
+  </div>
+
+  <!-- Bill Payment Section -->
+  <div id="bill-payment-section" class="form-section hidden">
+    <label for="bill-type">Choose Bill Type:</label>
+    <select id="bill-type">
+      <option>-- Select Bill Type --</option>
+      <option value="water">Water Bill</option>
+      <option value="gas">Gas Bill</option>
+      <option value="electricity">Electricity Bill</option>
+    </select>
+    <br><br>
+    <label for="bill-amount">Enter Amount:</label>
+    <input type="number" id="bill-amount" placeholder="Enter amount">
+    <br><br>
+    <label for="bill-subscriber-id">Subscriber ID/Reg. No.:</label>
+    <input type="text" id="bill-subscriber-id" placeholder="Enter ID">
+    <br><br>
+    <button onclick="previewData('bill-payment')">Preview</button>
+  </div>
+
+  <!-- Recharge Section -->
+  <div id="recharge-section" class="form-section hidden">
+    <label for="recharge-type">Choose Recharge Type:</label>
+    <select id="recharge-type" onchange="handleRechargeChange()">
+      <option value="">-- Select Recharge Type --</option>
+      <option value="tv-dth">TV/DTH</option>
+      <option value="wifi-router">WiFi/Router</option>
+      <option value="sim-prepaid">Sim/Prepaid</option>
+    </select>
+
+    <div id="tv-dth-section" class="hidden">
+      <label for="tv-provider">Choose Provider:</label>
+      <select id="tv-provider">
+        <option value="">-- Select Provider --</option>
+        <option value="tata-play">Tata Play</option>
+        <option value="dish-tv">Dish TV</option>
+        <option value="videocon">Videocon</option>
+        <option value="airtel-tv">Airtel TV</option>
+      </select>
+    </div>
+
+    <div id="wifi-router-section" class="hidden">
+      <label for="wifi-provider">Choose Provider:</label>
+      <select id="wifi-provider">
+        <option value="">-- Select Provider --</option>
+        <option value="airtel-xstream">Airtel Xstream</option>
+        <option value="jio-fiber">Jio Fiber</option>
+        <option value="others">Others</option>
+      </select>
+    </div>
+
+    <div id="sim-prepaid-section" class="hidden">
+      <label for="sim-provider">Choose Provider:</label>
+      <select id="sim-provider">
+        <option value="">-- Select Provider --</option>
+        <option value="airtel">Airtel</option>
+        <option value="vi">Vi</option>
+        <option value="jio">Jio</option>
+        <option value="bsnl">BSNL</option>
+      </select>
+    </div>
+
+    <br><br>
+    <label for="recharge-amount">Enter Amount:</label>
+    <input type="number" id="recharge-amount" placeholder="Enter amount">
+    <br><br>
+    <label for="recharge-subscriber-id">Subscriber ID/Reg. No.:</label>
+    <input type="text" id="recharge-subscriber-id" placeholder="Enter ID">
+    <br><br>
+    <button onclick="previewData('recharge')">Preview</button>
+  </div>
+
+  <!-- Preview Section -->
+  <div id="preview-section" class="hidden">
+    <h3>Preview Your Submission:</h3><br>
+    <p><strong>Service:</strong> <span id="preview-service"></span></p><br>
+    <p><strong>Details:</strong> <span id="preview-details"></span></p><br>
+    <p><strong>Amount:</strong> <span id="preview-amount"></span></p><br>
+    <p><strong>Subscriber ID:</strong> <span id="preview-id"></span></p>
+    <br>
+    <button onclick="finalSubmit()">Confirm & Submit</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p class="b">&copy; 2024 Nimu Online Cyber Service. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function handleServiceChange() {
+      const service = document.getElementById('service').value;
+      document.getElementById('bill-payment-section').classList.add('hidden');
+      document.getElementById('recharge-section').classList.add('hidden');
+      document.getElementById('preview-section').classList.add('hidden');
+
+      if (service === 'bill-payment') {
+        document.getElementById('bill-payment-section').classList.remove('hidden');
+      } else if (service === 'recharge') {
+        document.getElementById('recharge-section').classList.remove('hidden');
+      }
+    }
+
+    function handleRechargeChange() {
+      const rechargeType = document.getElementById('recharge-type').value;
+      document.getElementById('tv-dth-section').classList.add('hidden');
+      document.getElementById('wifi-router-section').classList.add('hidden');
+      document.getElementById('sim-prepaid-section').classList.add('hidden');
+
+      if (rechargeType === 'tv-dth') {
+        document.getElementById('tv-dth-section').classList.remove('hidden');
+      } else if (rechargeType === 'wifi-router') {
+        document.getElementById('wifi-router-section').classList.remove('hidden');
+      } else if (rechargeType === 'sim-prepaid') {
+        document.getElementById('sim-prepaid-section').classList.remove('hidden');
+      }
+    }
+
+    function previewData(type) {
+      let service = "";
+      let details = "";
+      let amount = "";
+      let subscriberId = "";
+
+      if (type === 'bill-payment') {
+        service = "Bill Payment";
+        details = document.getElementById('bill-type').value;
+        amount = document.getElementById('bill-amount').value;
+        subscriberId = document.getElementById('bill-subscriber-id').value;
+      } else if (type === 'recharge') {
+        service = "Recharge";
+        details = document.getElementById('recharge-type').value;
+        amount = document.getElementById('recharge-amount').value;
+        subscriberId = document.getElementById('recharge-subscriber-id').value;
+      }
+
+      if (!details || !amount || !subscriberId) {
+        alert("Please fill out all fields before previewing.");
+        return;
+      }
+
+      document.getElementById('preview-service').textContent = service;
+      document.getElementById('preview-details').textContent = details;
+      document.getElementById('preview-amount').textContent = amount;
+      document.getElementById('preview-id').textContent = subscriberId;
+
+      document.getElementById('preview-section').classList.remove('hidden');
+    }
+
+    function finalSubmit() {
+      alert("Your data has been submitted successfully!");
+      document.getElementById('preview-section').classList.add('hidden');
+    }
+  </script>
+</body>
+
+</body>
+</html>

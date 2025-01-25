@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Transactions</title>
+    <style>
+        /* Existing styles remain unchanged */
+        header {
+            background-color: white;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            background-color: wheat;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            font-size: 2rem;
+            text-decoration: underline;
+        }
+        nav a:hover {
+            color: white;
+            text-shadow:
+                2px 2px 0 red,
+                -2px 2px 0 red,
+                2px -2px 0 red,
+                -2px -2px 0 red;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+            color: black;
+            font-family: Elephant;
+        }
+        main {
+            background-color: whitesmoke;
+            padding: 2rem;
+            text-align: center;
+            font-family: Courier New;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: skyblue;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+         h2 {
+            color: #333;
+            font-size: 0.7rem;
+            text-align: center;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #preview-section {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #eef;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nimu Online Cyber Service</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Service</a>
+            <a href="links.html">Other Links</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+    <h2>Online Transactions (Service Charge: 2%)</h2>
+    <div class="container">
+        <form id="transactionForm">
+            <label for="option">Choose an option to receive payment:</label>
+            <select id="option" name="option" required>
+                <option>---Select---</option>
+                <option value="qr">Upload a QR Code</option>
+                <option value="upi">Share UPI ID</option>
+                <option value="contact">Share Registered UPI Contact Number</option>
+                <option value="passbook">Upload Bank Passbook</option>
+            </select>
+
+            <div id="inputContainer" style="margin-top: 20px;"></div>
+
+            <button type="button" id="previewButton">Preview</button>
+        </form>
+    </div>
+
+    <div id="preview-section">
+        <h3>Preview Your Submission</h3>
+        <p><strong>Option Selected:</strong> <span id="preview-option"></span></p>
+        <p><strong>Details:</strong> <span id="preview-details"></span></p>
+        <button id="editButton">Edit</button>
+        <button id="confirmButton">Confirm & Submit</button>
+    </div>
+
+    <footer>
+        <p class="b">&copy; 2024 Nimu Online Cyber Service. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('transactionForm');
+        const inputContainer = document.getElementById('inputContainer');
+        const optionSelect = document.getElementById('option');
+        const previewSection = document.getElementById('preview-section');
+        const previewOption = document.getElementById('preview-option');
+        const previewDetails = document.getElementById('preview-details');
+        const previewButton = document.getElementById('previewButton');
+        const editButton = document.getElementById('editButton');
+        const confirmButton = document.getElementById('confirmButton');
+
+        optionSelect.addEventListener('change', function () {
+            const selectedOption = optionSelect.value;
+            inputContainer.innerHTML = '';
+
+            if (selectedOption === 'qr') {
+                inputContainer.innerHTML = '<label for="qr">Upload QR Code:</label><input type="file" id="qr" name="qr" accept="image/*" required>';
+            } else if (selectedOption === 'upi') {
+                inputContainer.innerHTML = '<label for="upi">Enter UPI ID:</label><input type="text" id="upi" name="upi" required>';
+            } else if (selectedOption === 'contact') {
+                inputContainer.innerHTML = '<label for="contact">Enter Registered UPI Contact Number:</label><input type="text" id="contact" name="contact" required>';
+            } else if (selectedOption === 'passbook') {
+                inputContainer.innerHTML = '<label for="passbook">Upload Bank Passbook:</label><input type="file" id="passbook" name="passbook" accept="image/*,application/pdf" required>';
+            }
+        });
+
+        previewButton.addEventListener('click', function () {
+            const selectedOption = optionSelect.options[optionSelect.selectedIndex].text;
+            const detailsInput = inputContainer.querySelector('input');
+
+            if (!detailsInput || !detailsInput.value) {
+                alert('Please complete all fields before previewing.');
+                return;
+            }
+
+            previewOption.textContent = selectedOption;
+            previewDetails.textContent = detailsInput.value;
+            previewSection.style.display = 'block';
+        });
+
+        editButton.addEventListener('click', function () {
+            previewSection.style.display = 'none';
+        });
+
+        confirmButton.addEventListener('click', function () {
+            alert("Your submission has been successfully confirmed!");
+            form.reset();
+            inputContainer.innerHTML = '';
+            previewSection.style.display = 'none';
+        });
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert("Submission confirmed. Thank you!");
+        });
+    </script>
+</body>
+</html>

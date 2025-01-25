@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimu Online Cyber Service</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Your existing CSS */
+        header {
+            background-color: white;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            background-color: wheat;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            font-size: 2rem;
+            text-decoration: underline;
+        }
+        nav a:hover {
+            color: white;
+            font-size: 2rem;
+            text-shadow:
+                2px 2px 0 red, 
+                -2px 2px 0 red, 
+                2px -2px 0 red, 
+                -2px -2px 0 red;
+            text-align: center;
+            text-decoration: underline;
+        }
+        main {
+            background-color: whitesmoke;
+            padding: 2rem;
+            text-align: center;
+            font-family: Courier New;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: skyblue;
+            color: white;
+            bottom: 0;
+            width: 100%;
+        }
+        .form-container {
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            max-width: 400px;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+        label, input, button {
+            display: block;
+            margin: 10px 0;
+            width: 100%;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nimu Online Cyber Service</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Service</a>
+            <a href="links.html">Other Links</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <main>
+         <section id="home">
+            <h4 class="a">About Us</h4>
+            <p>"Welcome to Nimu Online Cyber Service – Your Gateway to the Digital World! 🌐✨
+We offer online cyber services, xerox, printing, scanning, and all your cyber needs under one roof. Whether you're here to work, play, or connect, we've got you covered! Open daily working days at A-Sector, Naharlagun."</p>
+        </section>
+
+        <section id="services">
+            <h4 class="a">Our Services</h4>
+            <p>Our Services include pvc print, printing, scanning, typing, xerox, lamination, spiral binding, recharge, bill payments, downloads, online transactions, online applications</p>
+        </section>
+
+        <section id="other-links">
+            <h4 class="a">Other Links</h4>
+            <p>Join our Group by clicking on the navigation tab "other-links" mentioned above or scan the QR provided under the other-link </p>
+        </section>
+
+        <section id="contact">
+            <h4 class="a">Contact Us</h4>
+            <p>Your response will be kindly initiated.</p>
+        </section>
+        <section id="register">
+            <h5 class="a">Register / Sign Up</h5>
+            <div class="form-container">
+                <form id="register-form">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name">
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone">
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password">
+
+                    <button type="button" onclick="validateRegistration()">Register</button>
+                </form>
+                <div id="register-preview" style="display: none; margin-top: 20px; color: green;"></div>
+            </div>
+        </section>
+
+        <section id="login">
+            <h6 class="a">Log In / Sign In</h6>
+            <div class="form-container">
+                <form id="login-form">
+                    <label for="email-login">Email:</label>
+                    <input type="email" id="email-login" name="email">
+
+                    <label for="password-login">Password:</label>
+                    <input type="password" id="password-login" name="password">
+
+                    <button type="button" onclick="validateLogin()">Log In</button>
+                </form>
+                <div id="login-preview" style="display: none; margin-top: 20px; color: green;"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Nimu Online Cyber Service. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function validateRegistration() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!name || !email || !phone || !password) {
+                alert('Please fill in all fields for registration.');
+                return;
+            }
+
+            previewRegistration(name, email, phone);
+        }
+
+        function previewRegistration(name, email, phone) {
+            const previewDiv = document.getElementById('register-preview');
+            previewDiv.innerHTML = `
+                <p><strong>Preview:</strong></p>
+                <p>Name: ${name}</p>
+                <p>Email: ${email}</p>
+                <p>Phone: ${phone}</p>
+                <button onclick="submitRegistration()">Submit</button>
+            `;
+            previewDiv.style.display = 'block';
+        }
+
+        function submitRegistration() {
+            alert('Registration Successful!');
+            document.getElementById('register-form').reset();
+            document.getElementById('register-preview').style.display = 'none';
+        }
+
+        function validateLogin() {
+            const email = document.getElementById('email-login').value.trim();
+            const password = document.getElementById('password-login').value.trim();
+
+            if (!email || !password) {
+                alert('Please fill in both email and password to log in.');
+                return;
+            }
+
+            previewLogin(email);
+        }
+
+        function previewLogin(email) {
+            const previewDiv = document.getElementById('login-preview');
+            previewDiv.innerHTML = `
+                <p><strong>Preview:</strong></p>
+                <p>Email: ${email}</p>
+                <button onclick="submitLogin()">Submit</button>
+            `;
+            previewDiv.style.display = 'block';
+        }
+
+        function submitLogin() {
+            alert('Login Successful!');
+            document.getElementById('login-form').reset();
+            document.getElementById('login-preview').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

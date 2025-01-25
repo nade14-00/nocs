@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimu Online Cyber Service</title>
+    <style>
+        /* Existing styles remain unchanged */
+        header {
+            background-color: white;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            background-color: wheat;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            font-size: 2rem;
+        }
+        nav a:hover {
+            color: white;
+            text-shadow:
+                2px 2px 0 red,
+                -2px 2px 0 red,
+                2px -2px 0 red,
+                -2px -2px 0 red;
+        }
+        h1 {
+            font-size: 2rem;
+            font-family: Elephant;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        label, h2 {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        select, input[type="file"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .preview-section {
+            display: none;
+            margin-top: 20px;
+            background: #eef;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .preview-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nimu Online Cyber Service</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="services.html">Service</a>
+            <a href="links.html">Other Links</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Online Application</h2>
+        <form id="applicationForm">
+            <label for="service">Choose a Service:</label>
+            <select id="service" name="service" required>
+                <option value="">-- Select a Service --</option>
+                <option value="Aadhar">Aadhar update/status check</option>
+                <option value="PAN">PAN apply/correction/renew</option>
+                <option value="Eshram">E-shram card</option>
+                <option value="Scholarship">Scholarship</option>
+                <option value="PMKisan">PM Kisan</option>
+                <option value="IGNOU">IGNOU</option>
+                <option value="NIOS">NIOS</option>
+                <option value="CTET">CTET</option>
+                <option value="APTET">APTET</option>
+                <option value="UGCNET">UGC NET</option>
+                <option value="APSSB">APSSB</option>
+                <option value="APSSC">APSSC</option>
+                <option value="Others">Others</option>
+            </select>
+
+            <div class="others-input" id="othersInputContainer">
+                <label for="others">Specify the Site Name:</label>
+                <input type="text" id="others" name="others" placeholder="Enter site name">
+            </div>
+
+            <label for="documents">Upload Required Documents (PDF):</label>
+            <input type="file" id="documents" name="documents" accept="application/pdf" required>
+
+            <button type="button" id="previewButton">Preview</button>
+        </form>
+
+        <div class="preview-section" id="previewSection">
+            <h2>Preview Your Application</h2>
+            <p><strong>Service Selected:</strong> <span id="previewService"></span></p>
+            <p><strong>Other Details:</strong> <span id="previewOthers"></span></p>
+            <p><strong>Uploaded Document:</strong> <span id="previewDocument"></span></p>
+
+            <div class="preview-buttons">
+                <button type="button" id="editButton">Edit</button>
+                <button type="button" id="confirmButton">Confirm & Submit</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Nimu Online Cyber Service. All rights reserved.</p>
+    </footer>
+    <script>
+        const form = document.getElementById('applicationForm');
+        const previewButton = document.getElementById('previewButton');
+        const previewSection = document.getElementById('previewSection');
+        const previewService = document.getElementById('previewService');
+        const previewOthers = document.getElementById('previewOthers');
+        const previewDocument = document.getElementById('previewDocument');
+        const editButton = document.getElementById('editButton');
+        const confirmButton = document.getElementById('confirmButton');
+        const othersInputContainer = document.getElementById('othersInputContainer');
+        const othersInput = document.getElementById('others');
+
+        document.getElementById('service').addEventListener('change', function() {
+            if (this.value === 'Others') {
+                othersInputContainer.style.display = 'block';
+            } else {
+                othersInputContainer.style.display = 'none';
+                othersInput.value = '';
+            }
+        });
+
+        previewButton.addEventListener('click', function() {
+            const service = document.getElementById('service').value;
+            const others = othersInput.value || 'N/A';
+            const documents = document.getElementById('documents').files[0]?.name || 'No file uploaded';
+
+            if (!service || (service === 'Others' && !others)) {
+                alert('Please complete all fields before previewing.');
+                return;
+            }
+
+            previewService.textContent = service;
+            previewOthers.textContent = others;
+            previewDocument.textContent = documents;
+
+            previewSection.style.display = 'block';
+        });
+
+        editButton.addEventListener('click', function() {
+            previewSection.style.display = 'none';
+        });
+
+        confirmButton.addEventListener('click', function() {
+            alert('Your application has been submitted successfully!');
+            form.reset();
+            previewSection.style.display = 'none';
+            othersInputContainer.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
